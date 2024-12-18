@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-  import Roulette from '~/layouts/splash.vue';
+  import Roulette from '~/components/roulette.vue';
 
   const appStore = useAppStore();
 
