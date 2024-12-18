@@ -71,7 +71,8 @@ export default async () => {
     modules: [
       '@pinia/nuxt',
       '@vueuse/nuxt',
-      '@nuxtjs/style-resources'
+      '@nuxtjs/style-resources',
+      'vue3-pixi-nuxt'
     ],
     nitro: {
       preset: 'aws-lambda'

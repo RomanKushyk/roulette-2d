@@ -46,7 +46,10 @@
     "@snap/camera-kit": "^0.15.1",
     "@types/webpack": "^5.28.5",
     "@userback/vue": "^0.3.0",
-    "pinia": "^2.1.7"
+    "pinia": "^2.1.7",
+    "pixi.js": "^8.6.6",
+    "vue3-pixi": "^0.9.6",
+    "vue3-pixi-nuxt": "^0.9.3"
   },
   "engines": {
     "node": ">=18.14.0",
