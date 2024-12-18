@@ -31,33 +31,35 @@
 
     & > .container {
       @include stretchedRectangle;
-      @include flexBox(column, space-between, center);
+      @include flexBox(column, space-between, center, 4px);
       @include backgroundImage('assets/images/table-texture.jpg', cover);
       padding: 4px;
       border-radius: 16px;
 
-      & > .header {
+      & > .header,
+      & > .footer {
         @include flexBox(column, center, center);
-        @include rectangle(100%, 5dvh);
+        @include rectangle(100%, max(5dvh, 50px));
         border-radius: 12px;
-        background: linear-gradient(153deg, #f0f0f06f 41.57%, #c9c9c96f 106.09%);
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+
+        &.header {
+          background: linear-gradient(153deg, #f0f0f06f 41.57%, #c9c9c96f 106.09%);
+        }
+
+        &.footer {
+          @include rectangle(100%, max(10dvh, 100px));
+          background: linear-gradient(-27deg, #f0f0f07f 41.57%, #c9c9c97f 106.09%);
+        }
       }
 
       & > .content {
-        @include flexBox(column, center, center);
-        width: 100%;
+        display: block;
         flex: 1;
-      }
-
-      & > .footer {
-        @include flexBox(column, center, center);
-        @include rectangle(100%, 10dvh);
+        width: 100%;
         border-radius: 12px;
-        background: linear-gradient(-27deg, #f0f0f07f 41.57%, #c9c9c97f 106.09%);
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
+        overflow: hidden;
       }
     }
   }
