@@ -1,0 +1,55 @@
+{
+  "name": "roulette-2d",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "document": "vue-docgen"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config-vue": "^0.39.4",
+    "@nuxt/eslint-config": "^0.1.1",
+    "@nuxt/webpack-builder": "^3.9.3",
+    "@nuxtjs/eslint-config-typescript": "^12.0.0",
+    "@nuxtjs/eslint-module": "^4.1.0",
+    "@nuxtjs/i18n": "^8.0.0",
+    "@nuxtjs/style-resources": "^2.0.0",
+    "@types/aframe": "^1.2.7",
+    "@types/node": "^18.15.11",
+    "@types/three": "^0.170.0",
+    "@types/vue": "^2.0.0",
+    "@vueuse/core": "^9.13.0",
+    "@vueuse/nuxt": "^9.13.0",
+    "eslint": "^8.37.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-nuxt": "^4.0.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-vue": "^9.14.1",
+    "nuxt": "^3.9.3",
+    "sass": "^1.61.0",
+    "sass-loader": "^13.2.2",
+    "vue-docgen-cli": "^4.65.2",
+    "webpack": "^5.77.0"
+  },
+  "overrides": {
+    "vue": "latest"
+  },
+  "dependencies": {
+    "@gtm-support/vue-gtm": "^2.0.0",
+    "@pinia/nuxt": "^0.5.1",
+    "@snap/camera-kit": "^0.15.1",
+    "@types/webpack": "^5.28.5",
+    "@userback/vue": "^0.3.0",
+    "pinia": "^2.1.7"
+  },
+  "engines": {
+    "node": ">=18.14.0",
+    "npm": ">=9.3.1"
+  }
+}

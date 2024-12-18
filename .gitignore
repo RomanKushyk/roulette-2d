@@ -1,0 +1,14 @@
+node_modules
+*.log*
+.nuxt
+.nitro
+.cache
+.output
+.env
+.env.staging
+.env.production
+dist
+.DS_Store
+certs
+.idea
+.vscode
