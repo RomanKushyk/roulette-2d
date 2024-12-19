@@ -1,6 +1,16 @@
 <template>
   <NuxtLayout name="gui">
-    <component :is="Roulette" />
+    <Roulette
+      :acceleration-duration="1000"
+      :constant-speed-duration="5000"
+      :deceleration-duration="10000"
+      :sectors="37"
+      :min-speed="0.2"
+      :max-speed="1"
+      :start-spin-fn-getter="getStartSpinFn"
+      @load="onLoad"
+      @spin-end="onSpinEnd"
+    />
   </NuxtLayout>
 
   <NuxtLayout name="overlay">
@@ -8,12 +18,29 @@
   </NuxtLayout>
 </template>
 
-<script setup>
+<script setup lang="ts">
   import Roulette from '~/components/roulette.vue';
+  import { sectorsMap } from '~/constants/sectors-map';
 
   const appStore = useAppStore();
 
   const { appState } = storeToRefs(appStore);
+  const startSpinFn = ref<(() => void) | null>(null);
+
+  const getStartSpinFn = (fn: () => void) => {
+    startSpinFn.value = fn;
+  };
+
+  const onLoad = () => {
+    console.log('----- load -----');
+    if (startSpinFn.value) {
+      startSpinFn.value();
+    }
+  };
+
+  const onSpinEnd = (sector: number) => {
+    console.log('----- spin-end -----', sector, sectorsMap[sector]);
+  };
 
   watch(appState, (newAppState) => {
     console.log('appState:', newAppState);
