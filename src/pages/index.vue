@@ -3,10 +3,8 @@
     <component :is="Roulette" />
   </NuxtLayout>
 
-  <NuxtLayout name="overlay" :title="'Title'">
-    <div :style="{ width: '200px', height: '200px', color: 'white' }">
-      loading...
-    </div>
+  <NuxtLayout name="overlay">
+    <div :style="{ width: '200px', height: '200px', color: 'white' }">loading...</div>
   </NuxtLayout>
 </template>
 

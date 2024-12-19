@@ -31,9 +31,9 @@
 
     & > .container {
       @include stretchedRectangle;
-      @include flexBox(column, space-between, center, 4px);
+      @include flexBox(column, space-between, center, 16px);
       @include backgroundImage('assets/images/table-texture.jpg', cover);
-      padding: 4px;
+      padding: 16px;
       border-radius: 16px;
 
       & > .header,
@@ -49,7 +49,7 @@
         }
 
         &.footer {
-          @include rectangle(100%, max(10dvh, 100px));
+          @include rectangle(100%, max(20dvh, 250px));
           background: linear-gradient(-27deg, #f0f0f07f 41.57%, #c9c9c97f 106.09%);
         }
       }

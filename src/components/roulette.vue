@@ -8,17 +8,26 @@
       :background-alpha="0.5"
     >
       <Loader
-        :resources="[RouletteTexture]"
+        :resources="[WheelTexture, PointerTexture]"
         @resolved="onResolved"
       >
         <sprite
-          :texture="RouletteTexture"
+          :texture="WheelTexture"
           :x="wheelX"
           :y="wheelY"
           :width="wheelSize"
           :height="wheelSize"
           :anchor="0.5"
           :rotation="rotation"
+        />
+
+        <sprite
+          :texture="PointerTexture"
+          :x="wheelX"
+          :y="wheelY"
+          :width="wheelSize * 0.64"
+          :height="wheelSize * 0.64"
+          :anchor="0.5"
         />
       </Loader>
     </Application>
@@ -27,8 +36,8 @@
 
 <script setup lang="ts">
   import { type ApplicationInst, onTick } from 'vue3-pixi';
-  import RouletteTexture from 'assets/images/roulette-wheel.png';
-  import { Texture } from 'pixi.js';
+  import WheelTexture from 'assets/images/roulette-wheel.png';
+  import PointerTexture from 'assets/images/roulette-pointer.png';
 
   const appStore = useAppStore();
 
@@ -48,17 +57,15 @@
     window.removeEventListener('resize', resize);
   };
 
-  const init = () => {
-    if (!appRef.value || !containerRef.value) return;
-  };
-
   const resize = () => {
-    if (!appRef.value || !containerRef.value) return;
+    if (!containerRef.value) return;
 
     containerRect.value = containerRef.value.getBoundingClientRect();
-    wheelSize.value = Math.min(containerRect.value.width, containerRect.value.height) * 0.85;
+    wheelSize.value = Math.min(containerRect.value.width, containerRect.value.height);
     wheelX.value = wheelSize.value / 2;
     wheelY.value = wheelSize.value / 2;
+
+    if (!appRef.value) return;
 
     appRef.value.app.renderer.resize(wheelSize.value, wheelSize.value);
   };
@@ -69,7 +76,6 @@
 
   onMounted(async () => {
     attachListeners();
-    init();
     resize();
   });
 
