@@ -23,10 +23,12 @@ export default async () => {
       shim: false
     },
     ssr: useServer,
+    target: 'static',
     builder: 'webpack',
     vue: {
       compilerOptions: {
-        isCustomElement: (tag: string) => tag.startsWith('a-') || tag.startsWith('xrextras-') || tag.startsWith('lottie-player')
+        isCustomElement: (tag: string) =>
+          tag.startsWith('a-') || tag.startsWith('xrextras-') || tag.startsWith('lottie-player')
       }
     },
     useRuntimeConfig: true,
@@ -37,7 +39,7 @@ export default async () => {
     },
     css: ['~/assets/styles/main.scss'],
     styleResources: {
-      scss: ['./assets/styles/_fonts.scss', './assets/styles/utils/index.scss']
+      scss: ['~/assets/styles/_fonts.scss', '~/assets/styles/utils/index.scss']
     },
     devServer: {
       https: devHttps,
@@ -46,11 +48,13 @@ export default async () => {
     rootDir: resolve('./src'),
     app: {
       head: {
+        title: AppConfig.PROJECT_TITLE,
         noscript: [],
         script: [],
-        title: AppConfig.PROJECT_TITLE
+        link: [{ rel: 'icon', type: 'image/x-icon', href: isProduction ? '/roulette-2d/favicon.ico' : '/favicon.ico' }]
       },
-      cdnUrl: AppConfig.NUXT_APP_CDN_URL || undefined
+      cdnUrl: AppConfig.NUXT_APP_CDN_URL || undefined,
+      baseURL: isProduction ? '/roulette-2d/' : '/'
     },
     hooks: {},
     webpack: {
@@ -67,12 +71,7 @@ export default async () => {
         scan: true
       }
     },
-    modules: [
-      '@pinia/nuxt',
-      '@vueuse/nuxt',
-      '@nuxtjs/style-resources',
-      'vue3-pixi-nuxt'
-    ],
+    modules: ['@pinia/nuxt', '@vueuse/nuxt', '@nuxtjs/style-resources', 'vue3-pixi-nuxt'],
     nitro: {
       preset: 'aws-lambda'
     }

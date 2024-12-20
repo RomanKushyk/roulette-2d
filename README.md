@@ -1,10 +1,14 @@
-# Roulette 2D mini-game
+# Roulette 2D Mini-Game
+
+## Live Demo
+
+Check out the live demo: [Roulette 2D](https://romankushyk.github.io/roulette-2d/)
 
 ## To Develop Locally
 
 ### Clone the repository
 
-replace the template URL with your project url
+Replace the template URL with your project URL:
 
 ```bash
 git clone https://github.com/RomanKushyk/roulette-2d.git
@@ -20,7 +24,7 @@ npm install
 
 ## Development Server
 
-Start the development server on http://localhost:3000;
+Start the development server on https://localhost:3000/:
 
 ```bash
 npm run dev
@@ -34,7 +38,7 @@ Build the SSR application for production:
 npm run build
 ```
 
-Build a static application fro production
+Build a static application for production:
 
 ```bash
 npm run generate
