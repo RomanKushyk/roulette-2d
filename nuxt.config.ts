@@ -41,8 +41,7 @@ export default async () => {
     },
     devServer: {
       https: devHttps,
-      port: '3012',
-      host: 'https://192.168.31.226/'
+      port: '3000'
     },
     rootDir: resolve('./src'),
     app: {

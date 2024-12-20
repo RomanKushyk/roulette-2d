@@ -1,20 +1,4 @@
-# Nuxt Template
-
-## To Create A New WebXR Project
-
-1. Click "Use this template" on the [Nuxt Template](https://github.com/romankushyk/nuxt-template)
-2. Click "Create a new repository" and give it a name and set it to private
-3. Clone the new repository to your local machine
-4. Open the local project folder and update the `app.config.ts` file in the project's root folder with your project details:
-5. Commit and push your changes to three new branches: `development`, `staging`, and `production`
-
-### `app.config.ts`
-
-```typescript
-  USE_SERVER: false,
-  PROJECT_TITLE: 'Nuxt Template',
-  NUXT_APP_CDN_URL: undefined 
-  ```
+# Roulette 2D mini-game
 
 ## To Develop Locally
 
@@ -23,7 +7,7 @@
 replace the template URL with your project url
 
 ```bash
-git clone https://github.com/romankushyk/nuxt-template.git
+git clone https://github.com/RomanKushyk/roulette-2d.git
 ```
 
 ### Setup
