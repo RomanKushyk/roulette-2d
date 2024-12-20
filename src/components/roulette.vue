@@ -62,48 +62,50 @@
   const appRef = ref<null | ApplicationInst>(null);
   const rotation = ref<number>(0);
   const animationFrameId = ref<number | null>(null);
-  const elapsedTime = ref<number>(0);
+  const startTime = ref<number | null>(null);
   const currentSpeed = ref<number>(0);
 
   const startAnimation = () => {
-    const maxSpeed = getRandomSpeed(props.minSpeed || 0.2, props.maxSpeed || 1);
-    const decelerationTime = props.decelerationDuration;
-    const constantSpeedTime = props.constantSpeedDuration;
+    stopAnimation();
+
+    startTime.value = null;
+    currentSpeed.value = 0;
+    rotation.value = rotation.value % 360;
+
+    const maxSpeed = getRandomSpeed(props.minSpeed, props.maxSpeed);
     const accelerationTime = props.accelerationDuration;
-
-    const accelerationEndTime = accelerationTime;
-    const constantSpeedEndTime = accelerationTime + constantSpeedTime;
-
-    elapsedTime.value = 0;
+    const constantSpeedTime = props.constantSpeedDuration;
+    const decelerationTime = props.decelerationDuration;
+    const totalDuration = accelerationTime + constantSpeedTime + decelerationTime;
 
     const easeOut = (t: number) => 1 - Math.pow(1 - t, 2);
 
     const animate = (time: number) => {
-      if (!elapsedTime.value) {
-        elapsedTime.value = time;
+      if (startTime.value === null) {
+        startTime.value = time;
       }
 
-      const delta = time - elapsedTime.value;
-      elapsedTime.value = time;
+      const elapsed = time - startTime.value;
 
-      if (elapsedTime.value <= accelerationEndTime) {
-        const t = elapsedTime.value / accelerationTime;
+      if (elapsed <= accelerationTime) {
+        const t = elapsed / accelerationTime;
         currentSpeed.value = maxSpeed * easeOut(t);
-      } else if (elapsedTime.value <= constantSpeedEndTime) {
+      } else if (elapsed <= accelerationTime + constantSpeedTime) {
         currentSpeed.value = maxSpeed;
-      } else {
-        const decelerationElapsed = elapsedTime.value - constantSpeedEndTime;
-        const t = Math.min(decelerationElapsed / decelerationTime, 1);
+      } else if (elapsed <= totalDuration) {
+        const decelerationElapsed = elapsed - accelerationTime - constantSpeedTime;
+        const t = decelerationElapsed / decelerationTime;
         currentSpeed.value = maxSpeed * (1 - easeOut(t));
+      } else {
+        currentSpeed.value = 0;
+        stopAnimation();
+        emit('spin-end', getSector(rotation.value, props.sectors || 37) + 1);
+        return;
       }
 
-      if (currentSpeed.value > 0) {
-        rotation.value += (currentSpeed.value * delta) / 30; // Плавне обертання
-        animationFrameId.value = requestAnimationFrame(animate);
-      } else {
-        cancelAnimationFrame(animationFrameId.value!);
-        emit('spin-end', getSector(rotation.value, props.sectors || 37) + 1);
-      }
+      rotation.value += (currentSpeed.value * (16.67 / 1000));
+
+      animationFrameId.value = requestAnimationFrame(animate);
     };
 
     animationFrameId.value = requestAnimationFrame(animate);
@@ -112,6 +114,8 @@
   const stopAnimation = () => {
     if (animationFrameId.value) {
       cancelAnimationFrame(animationFrameId.value);
+
+      animationFrameId.value = null;
     }
   };
 

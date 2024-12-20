@@ -13,8 +13,8 @@
         :constant-speed-duration="5000"
         :deceleration-duration="10000"
         :sectors="37"
-        :min-speed="0.5"
-        :max-speed="1"
+        :min-speed="5"
+        :max-speed="10"
         :start-spin-fn-getter="getStartSpinFn"
         @load="onLoad"
         @spin-end="onSpinEnd"
@@ -22,7 +22,7 @@
     </template>
 
     <template #footer>
-      <Footer />
+      <Footer :spin-fn="startSpinFn" />
     </template>
   </NuxtLayout>
 
@@ -52,19 +52,11 @@
 
   const onLoad = () => {
     appStore.toggleLoading(false);
-
-    if (startSpinFn.value) {
-      startSpinFn.value();
-    }
   };
 
   const onSpinEnd = (sector: number) => {
-    console.log('----- spin-end -----', sector, sectorsMap[sector]);
+    appStore.setSelectedNumber(sectorsMap[sector]);
   };
-
-  watch(appState, (newAppState) => {
-    console.log('appState:', newAppState);
-  });
 </script>
 
 <style scoped lang="scss"></style>

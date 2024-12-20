@@ -1,5 +1,5 @@
 <template>
-  <div class="header-content">
+  <div class="header-container">
     <img
       :src="Logo"
       alt=""
@@ -33,7 +33,7 @@
 </script>
 
 <style scoped lang="scss">
-  .header-content {
+  .header-container {
     @include stretchedRectangle;
     @include flexBox(row, space-between, center);
     padding: 5px;
