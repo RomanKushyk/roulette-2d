@@ -19,7 +19,7 @@
   <NuxtLayout name="splash" />
 
   <NuxtLayout name="overlay">
-    <div :style="{ width: '200px', height: '200px', color: 'white' }">loading...</div>
+    <component :is="ModalContent" />
   </NuxtLayout>
 
   <NuxtLayout name="loading" />
@@ -27,11 +27,13 @@
 
 <script setup lang="ts">
   import Roulette from '~/components/roulette.vue';
+  import ModalContent from '~/components/modal-content.vue';
   import { sectorsMap } from '~/constants/sectors-map';
+  import { AppState } from '~/interfaces/enums';
 
   const appStore = useAppStore();
 
-  const { appState } = storeToRefs(appStore);
+  const { appState, activeModal } = storeToRefs(appStore);
   const startSpinFn = ref<(() => void) | null>(null);
 
   const getStartSpinFn = (fn: () => void) => {

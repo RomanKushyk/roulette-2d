@@ -1,7 +1,6 @@
 <template>
   <div
     class="gui"
-    @click="appStore.showModal(Modal.help)"
   >
     <div class="container">
       <header class="header">Header</header>

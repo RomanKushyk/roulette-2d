@@ -12,10 +12,10 @@
         >
           <div class="header">
             <h3
-              v-if="title"
+              v-if="name"
               class="title"
             >
-              {{ title }}
+              {{ name }}
             </h3>
 
             <button
@@ -38,6 +38,7 @@
   import { ref, watch } from 'vue';
   import { storeToRefs } from 'pinia';
   import { useAppStore } from '~/stores/app-store';
+  import { modalsData } from '~/mocks/modals-data';
 
   const props = defineProps<{
     allowFullscreen?: boolean;
@@ -50,6 +51,7 @@
   const { activeModal } = storeToRefs(appStore);
   const overlayVisible = ref<boolean>(!!activeModal.value);
   const contentVisible = ref<boolean>(!!activeModal.value);
+  const name = ref<string>('');
 
   const close = () => {
     appStore.hideModal();
@@ -57,6 +59,7 @@
 
   watch(activeModal, (value) => {
     if (value) {
+      name.value = props.title || modalsData[value].title;
       overlayVisible.value = true;
       requestAnimationFrame(() => {
         contentVisible.value = true;
