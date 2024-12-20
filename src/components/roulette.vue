@@ -5,7 +5,7 @@
   >
     <Application
       ref="appRef"
-      :background-alpha="0.5"
+      :background-alpha="0"
     >
       <Loader
         :resources="[WheelTexture, PointerTexture]"
@@ -102,7 +102,7 @@
         animationFrameId.value = requestAnimationFrame(animate);
       } else {
         cancelAnimationFrame(animationFrameId.value!);
-        emit('spin-end', getSector(rotation.value) + 1, props.sectors || 37);
+        emit('spin-end', getSector(rotation.value, props.sectors || 37) + 1);
       }
     };
 
@@ -148,6 +148,5 @@
   .roulette {
     @include stretchedRectangle;
     @include flexBox(column, center, center);
-    background-color: #8080807f;
   }
 </style>

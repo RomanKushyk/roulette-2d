@@ -20,7 +20,7 @@ interface Actions {
 
 export const useAppStore = defineStore<'app', State, {}, Actions>('app', {
   state: () => ({
-    appState: AppState.loading,
+    appState: AppState.splash,
     activeModal: null,
     loading: false,
     debug: false,

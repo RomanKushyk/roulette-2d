@@ -1,6 +1,5 @@
 export enum AppState {
   splash = 'splash',
-  loading = 'loading',
   game = 'game'
 }
 
