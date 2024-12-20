@@ -23,8 +23,8 @@
 
 <style scoped lang="scss">
   .gui {
-    @include absTopLeft(0, 0);
-    @include rectangle(100dvw, var(--viewport-height));
+    @include stretchedRectangle;
+    position: relative;
     padding: 5px;
     background: linear-gradient(152.97deg, #202020 41.57%, #303030 106.09%);
     z-index: 0;

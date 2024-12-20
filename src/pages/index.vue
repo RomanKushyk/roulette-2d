@@ -16,6 +16,8 @@
   <NuxtLayout name="overlay">
     <div :style="{ width: '200px', height: '200px', color: 'white' }">loading...</div>
   </NuxtLayout>
+
+  <NuxtLayout name="loading" />
 </template>
 
 <script setup lang="ts">
@@ -32,7 +34,8 @@
   };
 
   const onLoad = () => {
-    console.log('----- load -----');
+    appStore.toggleLoading(false);
+
     if (startSpinFn.value) {
       startSpinFn.value();
     }

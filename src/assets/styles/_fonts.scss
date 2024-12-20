@@ -1,1 +1,39 @@
 // Font Face Registration
+@font-face {
+  font-family: 'Anton';
+  src: url('~/assets/fonts/Anton-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lilita One';
+  src: url('~/assets/fonts/LilitaOne-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Rubik';
+  src: url('~/assets/fonts/Rubik-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.anton-regular {
+  font-family: 'Anton', serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.lilita-one-regular {
+  font-family: 'Lilita One', serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.rubik-regular {
+  font-family: 'Rubik', serif;
+  font-weight: normal;
+  font-style: normal;
+}

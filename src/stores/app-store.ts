@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia';
-import { Modal } from '~/interfaces/enums';
+import { AppState, Modal } from '~/interfaces/enums';
 
 interface State {
-  appState: 'loading' | 'splash' | 'home' | 'game' | 'gameover' | 'leaderboard';
+  appState: AppState;
   activeModal: Modal | null;
+  loading: boolean;
   debug: boolean;
   isLandscape: boolean;
 }
@@ -12,14 +13,16 @@ interface Actions {
   setAppState(state: State['appState']): void;
   showModal(modal: Modal): void;
   hideModal(): void;
+  toggleLoading(value?: State['loading']): void;
   setDebug(debug: State['debug']): void;
   setIsLandscape(isLandScape: State['isLandscape']): void;
 }
 
 export const useAppStore = defineStore<'app', State, {}, Actions>('app', {
   state: () => ({
-    appState: 'loading',
+    appState: AppState.loading,
     activeModal: null,
+    loading: false,
     debug: false,
     isLandscape: false
   }),
@@ -32,6 +35,9 @@ export const useAppStore = defineStore<'app', State, {}, Actions>('app', {
     },
     hideModal() {
       this.activeModal = null;
+    },
+    toggleLoading(value) {
+      this.loading = value !== undefined ? value : !this.loading;
     },
     setDebug(debug) {
       this.debug = debug;
