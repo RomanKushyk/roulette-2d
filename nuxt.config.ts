@@ -1,11 +1,10 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 import certGen from './certgen';
 import { resolve } from 'path';
 import AppConfig from './app.config';
 import * as process from 'node:process';
+import { name as projectName } from './package.json';
 
 export default async () => {
-  const useServer = AppConfig.USE_SERVER;
   const isProduction = process.env.NODE_ENV === 'production';
   const devHttps = {
     key: '',
@@ -18,11 +17,19 @@ export default async () => {
     devHttps.cert = devServerCert;
   }
 
+  const getURL = (url: string) => {
+    if (isProduction) {
+      return `/${projectName}/${url}`;
+    }
+
+    return `/${url}`;
+  };
+
   return {
     typescript: {
       shim: false
     },
-    ssr: useServer,
+    ssr: AppConfig.USE_SERVER,
     target: 'static',
     builder: 'webpack',
     vue: {
@@ -51,10 +58,10 @@ export default async () => {
         title: AppConfig.PROJECT_TITLE,
         noscript: [],
         script: [],
-        link: [{ rel: 'icon', type: 'image/x-icon', href: isProduction ? '/roulette-2d/favicon.ico' : '/favicon.ico' }]
+        link: [{ rel: 'icon', type: 'image/x-icon', href: getURL('favicon.ico') }]
       },
       cdnUrl: AppConfig.NUXT_APP_CDN_URL || undefined,
-      baseURL: isProduction ? '/roulette-2d/' : '/'
+      baseURL: getURL('')
     },
     hooks: {},
     webpack: {
