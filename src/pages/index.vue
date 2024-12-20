@@ -3,17 +3,27 @@
     v-if="appState === AppState.game"
     name="gui"
   >
-    <Roulette
-      :acceleration-duration="1000"
-      :constant-speed-duration="5000"
-      :deceleration-duration="10000"
-      :sectors="37"
-      :min-speed="0.5"
-      :max-speed="1"
-      :start-spin-fn-getter="getStartSpinFn"
-      @load="onLoad"
-      @spin-end="onSpinEnd"
-    />
+    <template #header>
+      <Header />
+    </template>
+
+    <template #default>
+      <Roulette
+        :acceleration-duration="1000"
+        :constant-speed-duration="5000"
+        :deceleration-duration="10000"
+        :sectors="37"
+        :min-speed="0.5"
+        :max-speed="1"
+        :start-spin-fn-getter="getStartSpinFn"
+        @load="onLoad"
+        @spin-end="onSpinEnd"
+      />
+    </template>
+
+    <template #footer>
+      <Footer />
+    </template>
   </NuxtLayout>
 
   <NuxtLayout name="splash" />

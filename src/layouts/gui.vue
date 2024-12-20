@@ -3,13 +3,17 @@
     class="gui"
   >
     <div class="container">
-      <header class="header">Header</header>
+      <header class="header">
+        <slot name="header" />
+      </header>
 
       <main class="content">
         <slot />
       </main>
 
-      <footer class="footer">Footer</footer>
+      <footer class="footer">
+        <slot name="footer" />
+      </footer>
     </div>
   </div>
 </template>
@@ -39,7 +43,7 @@
       & > .footer {
         @include flexBox(column, center, center);
         @include rectangle(100%, max(5dvh, 50px));
-        border-radius: 12px;
+        border-radius: max(5dvh, 50px);
         backdrop-filter: blur(4px);
         -webkit-backdrop-filter: blur(4px);
 
