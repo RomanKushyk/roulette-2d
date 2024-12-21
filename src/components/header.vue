@@ -4,6 +4,7 @@
       :src="Logo"
       alt=""
       class="logo"
+      @click="onLogoClick"
     />
 
     <div class="title">Roulette</div>
@@ -26,6 +27,10 @@
   const appStore = useAppStore();
   const { appState } = storeToRefs(appStore);
   const showMenu = ref<boolean>(false);
+
+  const onLogoClick = () => {
+    appStore.setAppState(AppState.splash);
+  };
 
   const onMenuClick = () => {
     showMenu.value = !showMenu.value;
