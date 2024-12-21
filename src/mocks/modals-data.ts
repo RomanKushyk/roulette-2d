@@ -6,7 +6,7 @@ import Leaderboard from '~/assets/images/leaderboard.png';
 
 export const modalsData: ModalsData = {
   [Modal.help]: {
-    title: 'How to Play the Roulette Game:',
+    title: 'How to Play the Roulette Game',
     text:
       'Start the Game: Press the "Spin" button to begin.\n' +
       'Watch the Wheel: The wheel will spin, displaying numbers from 0 to 36.\n' +

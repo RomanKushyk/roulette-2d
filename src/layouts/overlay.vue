@@ -92,9 +92,10 @@
       position: relative;
       border-radius: 16px;
       background: linear-gradient(0deg, #252525 41.57%, #101010 106.09%);
+      overflow: hidden;
 
       & > .header {
-        @include flexBox(row, space-between, center);
+        @include flexBox(row, space-between, center, 20px);
         @include rectangle(100%, auto);
         padding: min(15px, 4vw);
         border-bottom: 1px solid #ffffff2f;
@@ -119,6 +120,7 @@
         flex: 1;
         position: relative;
         padding: min(15px, 4vw);
+        overflow: hidden;
       }
     }
   }
