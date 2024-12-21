@@ -6,6 +6,7 @@ interface State {
   activeModal: Modal | null;
   loading: boolean;
   selectedNumber: number | null;
+  menuOpen: boolean;
   debug: boolean;
   isLandscape: boolean;
 }
@@ -16,6 +17,7 @@ interface Actions {
   hideModal(): void;
   toggleLoading(value?: State['loading']): void;
   setSelectedNumber(number: State['selectedNumber']): void;
+  toggleMenu(value?: State['menuOpen']): void;
   setDebug(debug: State['debug']): void;
   setIsLandscape(isLandScape: State['isLandscape']): void;
 }
@@ -26,6 +28,7 @@ export const useAppStore = defineStore<'app', State, {}, Actions>('app', {
     activeModal: null,
     loading: true,
     selectedNumber: null,
+    menuOpen: false,
     debug: false,
     isLandscape: false
   }),
@@ -44,6 +47,9 @@ export const useAppStore = defineStore<'app', State, {}, Actions>('app', {
     },
     setSelectedNumber(number) {
       this.selectedNumber = number;
+    },
+    toggleMenu(value) {
+      this.menuOpen = value !== undefined ? value : !this.menuOpen;
     },
     setDebug(debug) {
       this.debug = debug;

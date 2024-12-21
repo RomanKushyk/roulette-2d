@@ -31,6 +31,7 @@
   const startSpin = () => {
     spins.value = true;
 
+    appStore.toggleMenu(false);
     appStore.setSelectedNumber(null);
 
     if (props.spinFn) {

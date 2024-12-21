@@ -11,12 +11,12 @@
 
     <div class="menu-wrapper">
       <button
-        :class="['menu-button', { active: showMenu }]"
+        :class="['menu-button', { active: menuOpen }]"
         @click="onMenuClick"
       />
 
       <transition name="fade">
-        <Menu v-if="showMenu" />
+        <Menu v-if="menuOpen" />
       </transition>
     </div>
   </div>
@@ -27,14 +27,14 @@
   import { AppState } from '~/interfaces/enums';
 
   const appStore = useAppStore();
-  const showMenu = ref<boolean>(false);
+  const { menuOpen } = storeToRefs(appStore);
 
   const onLogoClick = () => {
     appStore.setAppState(AppState.splash);
   };
 
   const onMenuClick = () => {
-    showMenu.value = !showMenu.value;
+    appStore.toggleMenu();
   };
 </script>
 
