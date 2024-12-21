@@ -49,11 +49,9 @@
 <style scoped lang="scss">
   .modal-content {
     @include flexBox(column, flex-start, flex-start, 1rem);
-    //@include rectangle(35dvw, auto);
     max-width: 500px;
     padding: 1rem 0;
     color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     text-align: start;
     overflow-y: auto;
 

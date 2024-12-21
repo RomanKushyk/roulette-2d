@@ -10,7 +10,6 @@ export const useImgPreload = async (assets: string[]) => {
         onload() {
           if (!--left) {
             resolve();
-            console.log('All images preloaded');
           }
         }
       }))
