@@ -9,14 +9,16 @@
 
     <div class="title">Roulette</div>
 
-    <button
-      class="menu-button"
-      @click="onMenuClick"
-    >
+    <div class="menu-wrapper">
+      <button
+        :class="['menu-button', { active: showMenu }]"
+        @click="onMenuClick"
+      />
+
       <transition name="fade">
         <Menu v-if="showMenu" />
       </transition>
-    </button>
+    </div>
   </div>
 </template>
 
@@ -59,12 +61,25 @@
       color: #fff;
     }
 
-    & > .menu-button {
+    & > .menu-wrapper {
+      @include flexBox(row, center, center);
+      position: relative;
+      height: 100%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+
+      & > .menu-button {
       position: relative;
       height: 100%;
       aspect-ratio: 1;
       border-radius: 50%;
       background: url('~/assets/icons/menu-bar.png') center / 70% no-repeat, #333;
+      transition: transform 0.3s ease;
+
+      &.active {
+        transform: rotate(90deg);
+      }
+    }
     }
   }
 </style>
