@@ -110,7 +110,7 @@
           margin-left: auto;
           color: #fff;
           cursor: pointer;
-          background: url('assets/images/close.png') center / 40% no-repeat, #f0f0f05f;
+          background: url('assets/icons/close.png') center / 40% no-repeat, #f0f0f05f;
         }
       }
 

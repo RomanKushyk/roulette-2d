@@ -19,9 +19,6 @@
 </template>
 
 <script setup lang="ts">
-  import { Modal } from '~/interfaces/enums';
-
-  const appStore = useAppStore();
 </script>
 
 <style scoped lang="scss">

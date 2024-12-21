@@ -25,7 +25,6 @@
   import { AppState } from '~/interfaces/enums';
 
   const appStore = useAppStore();
-  const { appState } = storeToRefs(appStore);
   const showMenu = ref<boolean>(false);
 
   const onLogoClick = () => {

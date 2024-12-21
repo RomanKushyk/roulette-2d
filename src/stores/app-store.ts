@@ -24,7 +24,7 @@ export const useAppStore = defineStore<'app', State, {}, Actions>('app', {
   state: () => ({
     appState: AppState.splash,
     activeModal: null,
-    loading: false,
+    loading: true,
     selectedNumber: null,
     debug: false,
     isLandscape: false
