@@ -2,7 +2,7 @@
   <div class="footer-container">
     <div class="content">
       <div class="result">
-        {{ selectedNumber ?? 'None' }}
+        {{ Number.isFinite(selectedNumber) ? selectedNumber : spins ? '✦ Fate turns ✦' : 'None' }}
       </div>
 
       <button
@@ -13,21 +13,29 @@
       </button>
     </div>
 
-    <div class="credits">© 2024 Roulette</div>
+    <div class="credits">
+      © 2024 Roulette
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
   const props = defineProps<{
-    spinFn: () => void;
+    spinFn:(() => void) | null;
   }>();
 
   const appStore = useAppStore();
   const { selectedNumber } = storeToRefs(appStore);
+  const spins = ref<boolean>(false);
 
   const startSpin = () => {
+    spins.value = true;
+
     appStore.setSelectedNumber(null);
-    props.spinFn();
+
+    if (props.spinFn) {
+      props.spinFn();
+    }
   };
 </script>
 
