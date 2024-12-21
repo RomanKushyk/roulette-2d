@@ -62,7 +62,8 @@
       @include flexBox(column, center, center);
 
       & > .illustration {
-        width: 30%;
+        width: 40%;
+        min-width: 150px;
         aspect-ratio: 1;
         object-fit: cover;
       }
